@@ -15,11 +15,11 @@ export class ListadoProductosComponent {
 
   productos: Producto [] = [];
 
-  constructor(private productoServicio: ProductoService) { }
+  constructor(private productoService: ProductoService){}
 
   ngOnInit(){
-    // initicializas los productos
-    this.productoServicio.productos;
+    // Inicializar los productos
+    this.productos = this.productoService.productos;
   }
 
 }

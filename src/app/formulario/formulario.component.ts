@@ -13,19 +13,21 @@ export class FormularioComponent {
   descripcionInput: string = '';
   precioInput: number | null = null;
 
-  constructor(private productoService: ProductoService) { }
-
-  agregarProducto(evento: Event) {
+  constructor(private productoService: ProductoService){}
+  
+  agregarProducto(evento: Event){
     evento.preventDefault();
+    
     //Validar que sean valores correcto
-    if (this.descripcionInput.trim() === '' || this.precioInput == null || this.precioInput <= 0) {
+    if(this.descripcionInput.trim() === '' 
+      || this.precioInput == null || this.precioInput <=0){
       console.log('Debe ingresar una descripción y un precio válidos');
       return;
     }
 
     const producto = new Producto(this.descripcionInput, this.precioInput);
 
-    // agregar nuevo producto con el servicio
+    // Agregamos el nuevo producto usando el servicio
     this.productoService.agregarProducto(producto);
 
     // Limpiamos los campos del formulario
