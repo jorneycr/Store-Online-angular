@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Producto } from '../producto/producto.model';
 import { FormsModule } from '@angular/forms';
 import { ProductoService } from '../producto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -10,17 +11,18 @@ import { ProductoService } from '../producto.service';
   styleUrl: './formulario.component.css'
 })
 export class FormularioComponent {
+
   descripcionInput: string = '';
   precioInput: number | null = null;
 
-  constructor(private productoService: ProductoService){}
-  
-  agregarProducto(evento: Event){
+  constructor(private productoService: ProductoService, private router: Router) { }
+
+  guardarProducto(evento: Event) {
     evento.preventDefault();
-    
+
     //Validar que sean valores correcto
-    if(this.descripcionInput.trim() === '' 
-      || this.precioInput == null || this.precioInput <=0){
+    if (this.descripcionInput.trim() === ''
+      || this.precioInput == null || this.precioInput <= 0) {
       console.log('Debe ingresar una descripción y un precio válidos');
       return;
     }
@@ -33,6 +35,14 @@ export class FormularioComponent {
     // Limpiamos los campos del formulario
     this.descripcionInput = '';
     this.precioInput = null;
+
+    //redirigimos al inicio
+    this.router.navigate(['/']);
+  }
+
+  cancelar() {
+    //redirigimos al inicio
+    this.router.navigate(['/']);
   }
 
 }
