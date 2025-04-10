@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado-productos',
-  imports: [FormsModule, FormularioComponent, ProductoComponent],
+  imports: [FormsModule,  ProductoComponent],
   templateUrl: './listado-productos.component.html',
   styleUrl: './listado-productos.component.css'
 })
@@ -21,9 +21,6 @@ export class ListadoProductosComponent {
   ngOnInit() {
     // Inicializar los productos
     this.productos = this.productoService.productos;
-    this.productoService.detallesProductoEmitter.subscribe(
-      (producto: Producto) => alert(`Producto: ${producto.descripcion}, $${producto.precio}`)
-    );
   }
 
   agregarProducto() {

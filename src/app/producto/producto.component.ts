@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Producto } from './producto.model';
-import { ProductoService } from '../producto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto',
@@ -12,10 +12,10 @@ export class ProductoComponent {
 
   @Input() producto!: Producto;
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private router: Router) { }
 
-  emitirDetalleProducto() {
-    this.productoService.detallesProductoEmitter.emit(this.producto);
+  editarProducto(id: number) {
+    this.router.navigate(['/editar', id]);    
   }
 
 }
