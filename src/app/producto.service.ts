@@ -27,4 +27,8 @@ export class ProductoService {
         this.productos.push(producto);
       }
     }
+
+    eliminarProducto(productoId: number): void {
+      this.productos = this.productos.filter(p => p.id !== productoId);
+    }
 }

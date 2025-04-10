@@ -47,9 +47,7 @@ export class FormularioComponent {
     this.productoService.guardarProducto(producto);
 
     // Limpiamos los campos del formulario
-    this.productoId = null;
-    this.descripcionInput = '';
-    this.precioInput = null;
+    this.limpiarFormulario();
 
     //redirigimos al inicio
     this.router.navigate(['/']);
@@ -58,6 +56,21 @@ export class FormularioComponent {
   cancelar() {
     //redirigimos al inicio
     this.router.navigate(['/']);
+  }
+
+  eliminarProducto(): void {
+    if (this.productoId !== null) {
+      this.productoService.eliminarProducto(this.productoId);
+      this.limpiarFormulario();
+      //redirigimos al inicio
+      this.router.navigate(['/']);
+    }
+  }
+
+  limpiarFormulario() {
+    this.productoId = null;
+    this.descripcionInput = '';
+    this.precioInput = null;  
   }
 
 }
