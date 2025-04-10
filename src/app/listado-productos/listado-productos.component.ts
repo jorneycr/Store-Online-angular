@@ -8,23 +8,35 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado-productos',
-  imports: [FormsModule,  ProductoComponent],
+  imports: [FormsModule, ProductoComponent],
   templateUrl: './listado-productos.component.html',
   styleUrl: './listado-productos.component.css'
 })
 export class ListadoProductosComponent {
 
-  productos: Producto[] = [];
+  productos: { [llave: string]: Producto } = {};
 
   constructor(private productoService: ProductoService, private router: Router) { }
 
   ngOnInit() {
     // Inicializar los productos
-    this.productos = this.productoService.productos;
+    this.cargarProductos();
+  }
+  cargarProductos() {
+    this.productoService.listarProductos().subscribe((productos: { [llave: string]: Producto }) => {
+      this.productos = productos;
+    });
   }
 
   agregarProducto() {
-    this,this.router.navigate(['agregar']);
+    this, this.router.navigate(['agregar']);
+  }
+
+  obtenerLlaves(): string[] {
+    if(this.productos) {
+      return Object.keys(this.productos);
+    }
+    return [];
   }
 
 }
