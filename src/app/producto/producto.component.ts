@@ -4,19 +4,22 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto',
+  standalone: true,
   imports: [],
   templateUrl: './producto.component.html',
   styleUrl: './producto.component.css'
 })
 export class ProductoComponent {
-
   @Input() producto!: Producto;
   @Input() llave!: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router){}
 
-  editarProducto() {
-    this.router.navigate(['/editar', this.llave]);    
+  editarProducto(){
+    // Pasamos el ID en la URL
+    this.router.navigate(['/editar', this.llave]);
   }
+
+
 
 }
